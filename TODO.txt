@@ -1,0 +1,11 @@
+1.	Write a test that verifies, using a saved .json response from the API, that a class similar to the RevisionParser class of the first project can parse the data out of the .json
+a.	Write the equivalent of the RevisionParser class
+2.	Write a test that verifies that the data can be stored in an object, similar to the to the Revision class of the first project.
+a.	Write the equivalent of the Revision class.
+3.	Write a test that verifies that, given a Revision-like object, it will format the contents into a string that is returned.
+a.	Write the equivalent of the RevisionFormatter class
+4.	Write a test that verifies that, give a sample query to the API, the response received from the API is correct
+a.	Write the equivalent of the APIConnect class (connect to the API, receive the .json response)
+b.	This test is only used during development of this object, then the @Test is removed
+5.	Write a basic JavaFX (or console) Main, which will display the results of the query, using the classes developed above.
+
