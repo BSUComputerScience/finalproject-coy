@@ -2,6 +2,8 @@ package edu.bsu.cs222;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 import java.io.InputStream;
 
 public class FilmParserTests {
@@ -20,7 +22,11 @@ public class FilmParserTests {
         String filename = "films-1.json";
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename);
         if (testDataStream != null) {
-            results = filmParser.parseFilm(testDataStream);
+            try {
+                results = filmParser.parseFilm(testDataStream);
+            } catch (IOException e) {
+                Assertions.fail("IOException was caught");
+            }
         }
         // CHECK
         if (results != null) {
@@ -29,7 +35,7 @@ public class FilmParserTests {
             Assertions.assertEquals(expectedResults.getOpening_crawl(), results.getOpening_crawl());
             Assertions.assertEquals(expectedResults.getRelease_date(), results.getRelease_date());
         } else {
-            Assertions.assertFalse(false); // test fails if results == null
+            Assertions.fail("No InputStream, perhaps file not found");
         }
     }
 
