@@ -25,7 +25,7 @@ public class FilmParserTests {
             try {
                 results = filmParser.parseFilm(testDataStream);
             } catch (IOException e) {
-                Assertions.fail("IOException was caught");
+                Assertions.fail("Could not access test data file.");
             }
         }
         // CHECK
@@ -35,7 +35,7 @@ public class FilmParserTests {
             Assertions.assertEquals(expectedResults.getOpening_crawl(), results.getOpening_crawl());
             Assertions.assertEquals(expectedResults.getRelease_date(), results.getRelease_date());
         } else {
-            Assertions.fail("No InputStream, perhaps file not found");
+            Assertions.fail("Results parsed from test was null.");
         }
     }
 
