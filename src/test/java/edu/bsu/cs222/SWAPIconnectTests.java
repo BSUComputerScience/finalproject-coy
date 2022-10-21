@@ -15,18 +15,13 @@ public class SWAPIconnectTests {
         JSONArray jsonResult = null;
         String targetPage = "films/1";
         SWAPIconnect SWAPIconnection = new SWAPIconnect(targetPage);
-        String filename = "films-1.json";
-        InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename);
-        try {
-            jsonResult = JsonPath.read(testDataStream, "$..title");
-        } catch (IOException e) {
-            Assertions.fail("Could not read test file.");
-        }
+        String desiredJsonPath = "$..title";
+        jsonResult = readDataFromTestJSON(jsonResult, desiredJsonPath);
         // OPERATE
         InputStream APIresponseStream = SWAPIconnection.connect();
         // CHECK
         try {
-            JSONArray APIjsonResult = JsonPath.read(APIresponseStream, "$..title");
+            JSONArray APIjsonResult = JsonPath.read(APIresponseStream, desiredJsonPath);
             Assertions.assertEquals(jsonResult.toString(), APIjsonResult.toString());
         } catch (IOException e) {
             Assertions.fail("No API response InputStream.");
@@ -39,13 +34,7 @@ public class SWAPIconnectTests {
         JSONArray jsonResult = null;
         String targetPage = "films/1";
         SWAPIconnect SWAPIconnection = new SWAPIconnect(targetPage);
-        String filename = "films-1.json";
-        InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename);
-        try {
-            jsonResult = JsonPath.read(testDataStream, "$..episode_id");
-        } catch (IOException e) {
-            Assertions.fail("Could not read test file.");
-        }
+        jsonResult = readDataFromTestJSON(jsonResult, "$..episode_id");
         // OPERATE
         InputStream APIresponseStream = SWAPIconnection.connect();
         // CHECK
@@ -55,5 +44,16 @@ public class SWAPIconnectTests {
         } catch (IOException e) {
             Assertions.fail("No API response InputStream.");
         }
+    }
+
+    private static JSONArray readDataFromTestJSON(JSONArray jsonResult, String jsonPath) {
+        String filename = "films-1.json";
+        InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename);
+        try {
+            jsonResult = JsonPath.read(testDataStream, jsonPath);
+        } catch (IOException e) {
+            Assertions.fail("Could not read test file.");
+        }
+        return jsonResult;
     }
 }
