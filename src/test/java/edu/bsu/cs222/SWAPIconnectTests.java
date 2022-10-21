@@ -9,7 +9,7 @@ import java.io.InputStream;
 
 public class SWAPIconnectTests {
 
-    @Test   // Only used in initial development, should not connect to SWAPI when testing regularly
+    //@Test   // Only used in initial development, should not connect to SWAPI when testing regularly
     public void testURLOpen() {
         // test each of the items that we are interested in.
         // TODO:  Could be improved, because each test is hitting the Star Wars API
