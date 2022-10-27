@@ -2,6 +2,7 @@ package edu.bsu.cs222;
 
 // useful reference: https://jenkov.com/tutorials/javafx/gridpane.html
 
+import com.jayway.jsonpath.JsonPath;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,6 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import net.minidev.json.JSONArray;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainGUI extends Application{
 
@@ -41,8 +46,16 @@ public class MainGUI extends Application{
     }
 
     private void handleButtonClick() {
-        String output = "A long time ago, in a galaxy far, far away...";
-
+        String output;
+        String targetPage = "films/1";
+        SWAPIconnect SWAPIconnection = new SWAPIconnect(targetPage);
+        InputStream APIresponseStream = SWAPIconnection.connect();
+        try {
+            JSONArray APIjsonResult = JsonPath.read(APIresponseStream, "$..opening_crawl");
+            output = APIjsonResult.toString();
+        } catch (IOException e) {
+            output = "No response received from the Star Wars API site.";
+        }
         filmTitle.setText(output);
     }
 }
