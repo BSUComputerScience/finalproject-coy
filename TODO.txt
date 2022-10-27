@@ -7,5 +7,5 @@ a.	Write the equivalent of the RevisionFormatter class
 XX	Write a test that verifies that, give a sample query to the API, the response received from the API is correct
 XX	Write the equivalent of the APIConnect class (connect to the API, receive the .json response)
 XX	This test is only used during development of this object, then the @Test is removed
-~5.	Write a basic JavaFX (or console) Main, which will display the results of the query, using the classes developed above.
+XX.	Write a basic JavaFX (or console) Main, which will display the results of the query, using the classes developed above.
 
