@@ -4,8 +4,8 @@ XX	Write a test that verifies that the data can be stored in an object, similar 
 XX	Write the equivalent of the Revision class.
 3.	Write a test that verifies that, given a Revision-like object, it will format the contents into a string that is returned.
 a.	Write the equivalent of the RevisionFormatter class
-4.	Write a test that verifies that, give a sample query to the API, the response received from the API is correct
-a.	Write the equivalent of the APIConnect class (connect to the API, receive the .json response)
-b.	This test is only used during development of this object, then the @Test is removed
-~5.	Write a basic JavaFX (or console) Main, which will display the results of the query, using the classes developed above.
+XX	Write a test that verifies that, give a sample query to the API, the response received from the API is correct
+XX	Write the equivalent of the APIConnect class (connect to the API, receive the .json response)
+XX	This test is only used during development of this object, then the @Test is removed
+XX.	Write a basic JavaFX (or console) Main, which will display the results of the query, using the classes developed above.
 
