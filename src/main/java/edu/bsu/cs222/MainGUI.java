@@ -6,6 +6,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -13,8 +17,10 @@ import java.io.InputStream;
 
 public class MainGUI extends Application{
 
+    final boolean TESTING = true;   // set to True to use test file, not API
     Button checkButton;
     Text filmTitle = new Text();
+    Text filmOpeningCrawl = new Text();
 
     public static void main(String[] args) {
         launch(args);
@@ -28,14 +34,19 @@ public class MainGUI extends Application{
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
+        // Formatting
+        filmTitle.setFont(Font.font("Lucida Sans Unicode", FontWeight.BOLD, FontPosture.REGULAR, 48));
+        filmTitle.setFill(Color.BLACK);
+        filmOpeningCrawl.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.ITALIC, 20));
         // Set up contents
         checkButton = new Button("Use the force, Luke!");
         grid.add(checkButton, 1, 0, 1, 1);
         grid.add(filmTitle, 0, 1, 3, 1);
+        grid.add(filmOpeningCrawl, 0, 2, 3, 1);
         // code to handle button action
         checkButton.setOnAction(e -> handleButtonClick());
         // add to the stage
-        Scene scene = new Scene(grid, 500, 500); // width, height
+        Scene scene = new Scene(grid, 1000, 1000); // width, height
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -48,17 +59,24 @@ public class MainGUI extends Application{
         FilmParser filmParser = new FilmParser();
         OpeningCrawlFormatter openingCrawlFormatter = new OpeningCrawlFormatter();
         // connect to API
-        SWAPIconnect SWAPIconnection = new SWAPIconnect(targetPage);
-        InputStream APIresponseStream = SWAPIconnection.connect();
+        InputStream APIresponseStream;
+        if (TESTING == false) {
+            SWAPIconnect SWAPIconnection = new SWAPIconnect(targetPage);
+            APIresponseStream = SWAPIconnection.connect();
+        } else {
+            String filename = String.format("films-%d.json", 1);
+            APIresponseStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename);
+        }
         // process response and display
         try {
             film = filmParser.parseFilm(APIresponseStream);
-            //JSONArray APIjsonResult = JsonPath.read(APIresponseStream, "$..opening_crawl");
-            output = openingCrawlFormatter.format(film);
+            filmTitle.setText(film.getTitle());
+            filmOpeningCrawl.setText(openingCrawlFormatter.format(film));
+
         } catch (IOException e) {
             output = "No response received from the Star Wars API site.";
+            filmOpeningCrawl.setText(output);
         }
-        filmTitle.setText(output);
         checkButton.setDisable(false);
     }
 }
