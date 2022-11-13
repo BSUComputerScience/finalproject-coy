@@ -17,40 +17,23 @@ public class FilmParserTests {
             "1980-05-17");
 
     @Test
-    public void test_parseFilm_film1() {
-        FilmParser filmParser = new FilmParser();
-        Film results = null;
-        // BUILD
-        Film expectedResults = newHope;
-        // OPERATE
-        String filename = "films-1.json";
-        InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename);
-        if (testDataStream != null) {
-            try {
-                results = filmParser.parseFilm(testDataStream);
-            } catch (IOException e) {
-                Assertions.fail("Could not access test data file.");
-            }
-        }
-        // CHECK
-        if (results != null) {
-            Assertions.assertEquals(expectedResults.getTitle(), results.getTitle());
-            Assertions.assertEquals(expectedResults.getEpisode_id(), results.getEpisode_id());
-            Assertions.assertEquals(expectedResults.getOpening_crawl(), results.getOpening_crawl());
-            Assertions.assertEquals(expectedResults.getRelease_date(), results.getRelease_date());
-        } else {
-            Assertions.fail("Results parsed from test was null.");
-        }
+    public void test_parseFilm() {
+        testingFilm(1);
+        testingFilm(2);
     }
 
-    @Test
-    public void test_parseFilm_film2() {
+    public void testingFilm(int i) {
         FilmParser filmParser = new FilmParser();
         Film results = null;
         // BUILD
-        Film expectedResults = empireStrikesBack;
+        Film expectedResults;
+        if (i == 1) {
+            expectedResults = newHope;
+        } else {
+            expectedResults = empireStrikesBack;
+        }
         // OPERATE
-        String filename = "films-2.json";
+        String filename = String.format("films-%d.json", i);
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filename);
         if (testDataStream != null) {
             try {
