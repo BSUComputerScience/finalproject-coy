@@ -12,7 +12,7 @@ public class FilmParser {
 
     Film parseFilm(InputStream dataStream) throws IOException {
         // read ONCE from stream, store in JSONArray, then read what we need out of it
-        JSONArray jsonResultAll = JsonPath.read(dataStream, "$..*");
+        String jsonResultAll = new String(dataStream.readAllBytes());
         JSONArray title = JsonPath.read(jsonResultAll, "$..title");
         JSONArray episode_id = JsonPath.read(jsonResultAll, "$..episode_id");
         JSONArray opening_crawl = JsonPath.read(jsonResultAll, "$..opening_crawl");

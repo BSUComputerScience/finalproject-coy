@@ -4,10 +4,10 @@ package edu.bsu.cs222;
 // sample API call: https://swapi.dev/api/films/1/
 
 public class Film {
-    String title;
-    int episode_id;
-    String opening_crawl;
-    String release_date;
+    private String title;
+    private int episode_id;
+    private String opening_crawl;
+    private String release_date;
 
     public Film(String title, int episode_id, String opening_crawl, String release_date) {
         this.title = title;
