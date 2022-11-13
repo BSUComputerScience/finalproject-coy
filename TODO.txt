@@ -9,7 +9,10 @@ XX	Write the equivalent of the APIConnect class (connect to the API, receive the
 XX	This test is only used during development of this object, then the @Test is removed
 XX.	Write a basic JavaFX (or console) Main, which will display the results of the query, using the classes developed above.
 6.  Improve the GUI:
-    a. Add ability to specify movie number (1=a new hope) as a dropdown menu
+    XX Add ability to specify movie number (1=a new hope) as a dropdown menu
     XX Improve appearance of opening crawl
-    c. Download static images for the cover art, display
-    d. Add ability to display other information about the film (release date, title, episode id)
+    XX Add ability to display other information about the film (release date, title, episode id)
+    d. Fix centering problem
+7.  Add additional information about the films.
+    a. Add static resource cover art to film info displayed.
+    b. Display other data returned in the JSON
