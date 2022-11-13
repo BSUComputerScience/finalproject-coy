@@ -1,8 +1,5 @@
 package edu.bsu.cs222;
 
-// useful reference: https://jenkov.com/tutorials/javafx/gridpane.html
-
-import com.jayway.jsonpath.JsonPath;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,8 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import net.minidev.json.JSONArray;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -46,16 +41,24 @@ public class MainGUI extends Application{
     }
 
     private void handleButtonClick() {
+        checkButton.setDisable(true);
         String output;
         String targetPage = "films/1";
+        Film film;
+        FilmParser filmParser = new FilmParser();
+        OpeningCrawlFormatter openingCrawlFormatter = new OpeningCrawlFormatter();
+        // connect to API
         SWAPIconnect SWAPIconnection = new SWAPIconnect(targetPage);
         InputStream APIresponseStream = SWAPIconnection.connect();
+        // process response and display
         try {
-            JSONArray APIjsonResult = JsonPath.read(APIresponseStream, "$..opening_crawl");
-            output = APIjsonResult.toString();
+            film = filmParser.parseFilm(APIresponseStream);
+            //JSONArray APIjsonResult = JsonPath.read(APIresponseStream, "$..opening_crawl");
+            output = openingCrawlFormatter.format(film);
         } catch (IOException e) {
             output = "No response received from the Star Wars API site.";
         }
         filmTitle.setText(output);
+        checkButton.setDisable(false);
     }
 }
