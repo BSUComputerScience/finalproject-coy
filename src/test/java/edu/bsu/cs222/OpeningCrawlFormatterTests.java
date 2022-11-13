@@ -14,7 +14,7 @@ public class OpeningCrawlFormatterTests {
 
     @Test
     public void testOpeningCrawlFormatter() {
-        OpeningCrawlFormatter openingCrawlFormatter = new OpenCrawlFormatter();
+        OpeningCrawlFormatter openingCrawlFormatter = new OpeningCrawlFormatter();
         Assertions.assertEquals(formattedNewHope, openingCrawlFormatter.format(newHope));
     }
 }
