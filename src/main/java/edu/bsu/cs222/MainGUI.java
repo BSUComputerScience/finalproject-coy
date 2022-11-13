@@ -5,12 +5,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,17 +25,29 @@ public class MainGUI extends Application{
     }
     @Override
     public void start(Stage primaryStage) {
+        // Set title, background, etc
         primaryStage.setTitle("Star Wars Trivia");
-        // Set the layout
+        InputStream backgroundImageFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("stars.jpeg");
+        BackgroundImage backgroundImage = new BackgroundImage(new Image(backgroundImageFile),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
+        // Set the layout and add background image to grid
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
+        grid.setBackground(background);
         // Formatting
-        filmTitle.setFont(Font.font("Lucida Sans Unicode", FontWeight.BOLD, FontPosture.REGULAR, 48));
+        filmTitle.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 48));
         filmTitle.setFill(Color.BLACK);
+        filmTitle.setStrokeWidth(2);
+        filmTitle.setStroke(Color.YELLOW);
+        filmTitle.setTextAlignment(TextAlignment.CENTER);
         filmOpeningCrawl.setFont(Font.font("Lucida Sans Unicode", FontWeight.NORMAL, FontPosture.ITALIC, 20));
+        filmOpeningCrawl.setFill(Color.WHITE);
+        filmOpeningCrawl.setTextAlignment(TextAlignment.CENTER);
         // Set up contents
         checkButton = new Button("Use the force, Luke!");
         grid.add(checkButton, 1, 0, 1, 1);

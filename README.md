@@ -27,5 +27,7 @@ object-oriented paradigm.
 **Platform**:
 This project will be built for desktop applications.
 
-**Lo-Fi UI**:
-*Coming Soon*
+**Image Source**:
+All image sources from: https://www.starwars.com/
+* Backgrounds from: https://www.starwars.com/news/star-wars-backgrounds
+* Cover art from: https://www.starwars.com/films
