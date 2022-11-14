@@ -17,8 +17,9 @@ import java.io.InputStream;
 
 public class MainGUI extends Application{
 
-    final boolean TESTING = false;   // set to True to use test file, not API
+    final boolean TESTING = true;   // set to True to use test file, not API
     Button checkButton = new Button("Display");
+    Text sceneTitle = new Text("Star Wars Trivia");
     Text filmTitle = new Text();
     Text filmOpeningCrawl = new Text();
     Text releaseDate = new Text();
@@ -51,12 +52,13 @@ public class MainGUI extends Application{
         }
         // Formatting text and add to grid, 2 columns wide, Order is (col, row, colspan, rowspan)
         formatTextFieldsForDisplay();
-        grid.add(selectMovie, 0, 0, 1, 1);
-        grid.add(checkButton, 1, 0, 1, 1);
-        grid.add(filmTitle, 0, 1, 2, 1);
-        grid.add(episodeID, 0, 2, 1, 1);
-        grid.add(releaseDate, 1, 2, 1, 1);
-        grid.add(filmOpeningCrawl, 0, 3, 2, 1);
+        grid.add(sceneTitle, 0, 0, 2, 1);
+        grid.add(selectMovie, 0, 1);
+        grid.add(checkButton, 1, 1);
+        grid.add(filmTitle, 0, 2, 2, 1);
+        grid.add(episodeID, 0, 3, 1, 1);
+        grid.add(releaseDate, 1, 3, 1, 1);
+        grid.add(filmOpeningCrawl, 0, 4, 2, 1);
         // configure button action
         checkButton.setOnAction(e -> handleButtonClick());
         // add grid to the scene and the scene to the stage
@@ -66,6 +68,11 @@ public class MainGUI extends Application{
     }
 
     private void formatTextFieldsForDisplay() {
+        sceneTitle.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 96));
+        sceneTitle.setFill(Color.BLACK);
+        sceneTitle.setStrokeWidth(2);
+        sceneTitle.setStroke(Color.YELLOW);
+        sceneTitle.setTextAlignment(TextAlignment.CENTER);
         filmTitle.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 48));
         filmTitle.setFill(Color.BLACK);
         filmTitle.setStrokeWidth(2);

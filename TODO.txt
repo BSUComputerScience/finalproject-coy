@@ -16,3 +16,4 @@ XX.	Write a basic JavaFX (or console) Main, which will display the results of th
 7.  Add additional information about the films.
     a. Add static resource cover art to film info displayed.
     b. Display other data returned in the JSON
+8.  Make the opening crawl text scroll upward (maybe https://jenkov.com/tutorials/javafx/animation.html)
