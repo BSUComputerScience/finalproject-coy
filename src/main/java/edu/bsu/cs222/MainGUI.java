@@ -38,7 +38,8 @@ public class MainGUI extends Application{
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        grid.setPadding(new Insets(50, 50, 50, 50));
+        grid.setPrefSize(1000, 1000);
         // Set title and background
         InputStream backgroundImageFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("stars.jpeg");
         if (backgroundImageFile != null) {
@@ -48,14 +49,14 @@ public class MainGUI extends Application{
             Background background = new Background(backgroundImage);
             grid.setBackground(background);
         }
-        // Formatting text and add to grid, 4 columns wide, Order is (col, row, colspan, rowspan)
+        // Formatting text and add to grid, 2 columns wide, Order is (col, row, colspan, rowspan)
         formatTextFieldsForDisplay();
-        grid.add(selectMovie, 1, 0, 1, 1);
-        grid.add(checkButton, 2, 0, 1, 1);
-        grid.add(filmTitle, 1, 1, 2, 1);
-        grid.add(episodeID, 1, 2, 1, 1);
-        grid.add(releaseDate, 2, 2, 1, 1);
-        grid.add(filmOpeningCrawl, 1, 3, 2, 1);
+        grid.add(selectMovie, 0, 0, 1, 1);
+        grid.add(checkButton, 1, 0, 1, 1);
+        grid.add(filmTitle, 0, 1, 2, 1);
+        grid.add(episodeID, 0, 2, 1, 1);
+        grid.add(releaseDate, 1, 2, 1, 1);
+        grid.add(filmOpeningCrawl, 0, 3, 2, 1);
         // configure button action
         checkButton.setOnAction(e -> handleButtonClick());
         // add grid to the scene and the scene to the stage
